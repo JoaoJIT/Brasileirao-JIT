@@ -31,10 +31,9 @@ class TimeRepository {
       time.pontos,
       time.vitorias,
       time.derrotas,
-      time.derrotas,
       time.empates,
-      time.gols_marcados,
-      time.gols_sofridos,
+      time.golsMarcados,
+      time.golsSofridos,
     ]);
   }
 
@@ -45,7 +44,7 @@ class TimeRepository {
 
   findById(id) {
     const sql = "SELECT * FROM times_brasileirao_2024 WHERE id = $1;";
-    return this.TimeRepository(sql, [id]);
+    return this.queryTime(sql, [id]);
   }
 
   findBySigla(sigla) {
@@ -67,8 +66,8 @@ class TimeRepository {
       time.vitorias,
       time.derrotas,
       time.empates,
-      time.gols_marcados,
-      time.gols_sofridos,
+      time.golsMarcados,
+      time.golsSofridos,
       id,
     ]);
   }

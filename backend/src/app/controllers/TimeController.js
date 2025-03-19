@@ -1,5 +1,5 @@
-import Time from "../model/Time";
-import TimeRepository from "../repositories/TimeRepository";
+import Time from "../model/Time.js";
+import TimeRepository from "../repositories/TimeRepository.js";
 
 class TimeController {
   async findAll(request, response) {
@@ -26,7 +26,7 @@ class TimeController {
   }
 
   async findBySigla(request, response) {
-    const sigla = request.params.sigla;
+    const sigla = request.params.sigla.toUpperCase();
     try {
       const result = await TimeRepository.findBySigla(sigla);
       if (Object.keys(result).length == 0) {
@@ -57,9 +57,8 @@ class TimeController {
             request.body.vitorias,
             request.body.derrotas,
             request.body.empates,
-            request.body.golsMarcados,
-            request.body.golsSofridos,
-            request.body.saldoGols
+            request.body.gols_marcados,
+            request.body.gols_sofridos
           );
           await TimeRepository.updateById(id, time);
           response.json({ message: "Success" });
@@ -68,7 +67,7 @@ class TimeController {
         }
       }
     } catch (error) {
-      request.json(error);
+      response.json(error);
     }
   }
 
@@ -90,7 +89,7 @@ class TimeController {
   async store(request, response) {
     const sigla = request.params.sigla;
     try {
-      const exists = TimeRepository.findBySigla(sigla);
+      const exists = await TimeRepository.findBySigla(sigla);
       if (Object.keys(exists).length > 0) {
         response.json({
           message: "Esse time já está cadastrado no campeonato",
@@ -104,9 +103,8 @@ class TimeController {
             request.body.vitorias,
             request.body.derrotas,
             request.body.empates,
-            request.body.golsMarcados,
-            request.body.golsSofridos,
-            request.body.saldoGols
+            request.body.gols_marcados,
+            request.body.gols_sofridos
           );
           await TimeRepository.create(time);
           response.json({ message: "Success" });
