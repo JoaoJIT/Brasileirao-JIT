@@ -17,8 +17,7 @@ class Time {
     derrotas,
     empates,
     golsMarcados,
-    golsSofridos,
-    saldoGols
+    golsSofridos
   ) {
     this._nome = nome;
     this._sigla = sigla;
@@ -28,7 +27,6 @@ class Time {
     this._empates = empates;
     this._golsMarcados = golsMarcados;
     this._golsSofridos = golsSofridos;
-    this._saldoGols = saldoGols;
   }
 
   get nome() {
@@ -97,10 +95,6 @@ class Time {
 
   set golsSofridos(value) {
     this._golsSofridos = value;
-  }
-
-  set saldoGols(value) {
-    this._saldoGols = value;
   }
 }
 

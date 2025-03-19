@@ -45,7 +45,7 @@ class TimeRepository {
 
   findById(id) {
     const sql = "SELECT * FROM times_brasileirao_2024 WHERE id = $1;";
-    return this.TimeRepository(sql, [id]);
+    return this.queryTime(sql, [id]);
   }
 
   findBySigla(sigla) {

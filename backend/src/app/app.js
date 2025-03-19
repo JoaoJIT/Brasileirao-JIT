@@ -1,11 +1,11 @@
 import express from "express";
-import routes from "./routes.js";
+import router from "./routes.js";
 
 const app = express();
 
 app.use(express.json());
 
 //use routes
-app.use(routes);
+app.use(router);
 
 export default app;
