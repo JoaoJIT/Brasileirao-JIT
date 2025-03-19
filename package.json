@@ -1,6 +1,7 @@
 {
   "name": "brasileirao-jit",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,6 +19,8 @@
   },
   "homepage": "https://github.com/JoaoJIT/Brasileirao-JIT#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "pg": "^8.14.1",
+    "postgres": "^3.4.5"
   }
 }
