@@ -31,10 +31,9 @@ class TimeRepository {
       time.pontos,
       time.vitorias,
       time.derrotas,
-      time.derrotas,
       time.empates,
-      time.gols_marcados,
-      time.gols_sofridos,
+      time.golsMarcados,
+      time.golsSofridos,
     ]);
   }
 
@@ -67,8 +66,8 @@ class TimeRepository {
       time.vitorias,
       time.derrotas,
       time.empates,
-      time.gols_marcados,
-      time.gols_sofridos,
+      time.golsMarcados,
+      time.golsSofridos,
       id,
     ]);
   }

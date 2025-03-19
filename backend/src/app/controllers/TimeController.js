@@ -57,8 +57,8 @@ class TimeController {
             request.body.vitorias,
             request.body.derrotas,
             request.body.empates,
-            request.body.golsMarcados,
-            request.body.golsSofridos
+            request.body.gols_marcados,
+            request.body.gols_sofridos
           );
           await TimeRepository.updateById(id, time);
           response.json({ message: "Success" });
@@ -67,7 +67,7 @@ class TimeController {
         }
       }
     } catch (error) {
-      request.json(error);
+      response.json(error);
     }
   }
 
@@ -103,9 +103,8 @@ class TimeController {
             request.body.vitorias,
             request.body.derrotas,
             request.body.empates,
-            request.body.golsMarcados,
-            request.body.golsSofridos,
-            request.body.saldoGols
+            request.body.gols_marcados,
+            request.body.gols_sofridos
           );
           await TimeRepository.create(time);
           response.json({ message: "Success" });
