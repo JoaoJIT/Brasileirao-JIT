@@ -103,3 +103,5 @@ class Time {
     this._saldoGols = value;
   }
 }
+
+export default Time;
