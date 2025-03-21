@@ -1,0 +1,105 @@
+.new-team-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 64px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
+
+.form-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #12192C;
+}
+
+.form-image img {
+    width: 31rem;
+}
+
+.form-content {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+    background-color: #ffffff;
+}
+
+form {
+    width: 100%;
+}
+
+.form-header {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-teams {
+    display: flex;
+    align-items: center;
+}
+
+.back-teams button {
+    border: none;
+    background-color: #251fc5;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.back-teams button:hover {
+    filter: brightness(80%);
+}
+
+.back-teams button a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.input-box input {
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px 1px #c2c2c3;
+    width: 250px;
+}
+
+.form-button  button {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #251fc5;
+    padding: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+    border: none;
+    transition: filter 0.2s;
+}
+
+.form-button button:hover {
+    filter: brightness(80%);
+}
+
