@@ -112,12 +112,13 @@ function NewTeam() {
       if (isEditing) {
         data.id = id;
         const response = await api.put(`times/${id}`, data);
-        console.log("Time atualizado:", response.data);
       } else {
         const response = await api.post("times", data);
-        console.log("Time criado:", response.data);
       }
-      navigate("/teams");
+
+      const successMessage = isEditing ? `Time atualizado com sucesso!` : `Time cadastrado com sucesso!`;
+
+      navigate("/teams", {state: {successMessage}});
     } catch (error) {
       console.error("Erro na operação:", error.response?.data || error.message);
       alert(`Erro: ${error.response?.data?.message || error.message}`);
