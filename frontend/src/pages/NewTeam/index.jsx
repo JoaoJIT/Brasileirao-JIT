@@ -7,6 +7,7 @@ import formImage from "../../assets/undraw_goal_rulh.svg";
 function NewTeam() {
   const navigate = useNavigate();
   const { teamId } = useParams();
+  const isEditing = Boolean(teamId);
 
   const [id, setId] = useState(null);
   const [nome, setNome] = useState("");
@@ -19,7 +20,9 @@ function NewTeam() {
   const [gols_sofridos, setGolsSofridos] = useState("0");
 
   useEffect(() => {
-    if (teamId === "0") {
+    if(isEditing){
+      loadTeam();
+    } else {
       // Reset para novo time
       setId(null);
       setNome("");
@@ -30,9 +33,7 @@ function NewTeam() {
       setEmpates("0");
       setGolsMarcados("0");
       setGolsSofridos("0");
-      return;
     }
-    loadTeam();
   }, [teamId]);
 
   async function loadTeam() {
@@ -108,13 +109,13 @@ function NewTeam() {
     };
 
     try {
-      if (teamId === "0") {
-        const response = await api.post("times", data);
-        console.log("Time criado:", response.data);
-      } else {
+      if (isEditing) {
         data.id = id;
         const response = await api.put(`times/${id}`, data);
         console.log("Time atualizado:", response.data);
+      } else {
+        const response = await api.post("times", data);
+        console.log("Time criado:", response.data);
       }
       navigate("/teams");
     } catch (error) {
@@ -132,7 +133,7 @@ function NewTeam() {
         <form onSubmit={saveOrUpdate}>
           <div className="form-header">
             <div className="title">
-              <h1>{teamId === "0" ? "Cadastrar novo" : "Atualizar"} time</h1>
+              <h1>{isEditing ? "Editar" : "Cadastrar novo"} time</h1>
             </div>
             <div className="back-teams">
               <button>
@@ -239,9 +240,7 @@ function NewTeam() {
             </div>
           </div>
           <div className="form-button">
-            <button type="submit">
-              {teamId === "0" ? "Cadastrar" : "Atualizar"}
-            </button>
+            <button type="submit">{isEditing ? "Atualizar" : "Cadastrar"}</button>
           </div>
         </form>
       </div>

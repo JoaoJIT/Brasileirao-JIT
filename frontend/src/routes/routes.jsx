@@ -10,7 +10,8 @@ export default function AppRoutes() {
             <Routes>
                 <Route path="/" exact element={<Home />} /> 
                 <Route path="/teams" element={<Teams />} /> 
-                <Route path="/team/new/:teamId" element={<NewTeam />} /> 
+                <Route path="/team/new" element={<NewTeam />} /> 
+                <Route path="/team/edit/:teamId" element={<NewTeam />} /> 
             </Routes>
         </BrowserRouter>
     );
