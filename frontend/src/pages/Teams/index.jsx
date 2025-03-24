@@ -9,6 +9,9 @@ function Teams() {
   const navigate = useNavigate();
 
   const [teams, setTeams] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [teamName, setTeamName] = useState('');
+  const [teamId, setTeamId] = useState(0);
 
   useEffect(() => {
     api.get("times").then((response) => {
@@ -16,6 +19,21 @@ function Teams() {
       console.log(response);
     });
   }, []);
+
+  const handleDeleteClick = (name,id) => {
+    setTeamName(name);
+    setTeamId(id);
+    setShowModal(true);
+  };
+
+  const confirmDelete = () => {
+    if(teamName){
+      deleteTeam(teamId);
+    }
+    setShowModal(false);
+    setTeamName('');
+    setTeamId(0);
+  };
 
   async function deleteTeam(id) {
     try {
@@ -78,7 +96,7 @@ function Teams() {
                   color="#251fc5"
                 />
                 <FiTrash2
-                  onClick={() => deleteTeam(team.id)}
+                  onClick={() => handleDeleteClick(team.nome, team.id)}
                   size={18}
                   color="red"
                 />
@@ -87,6 +105,17 @@ function Teams() {
           ))}
         </tbody>
       </table>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Tem certeza que deseja excluir o time <strong>{teamName}</strong>?</p>
+            <div className="button-group">
+              <button className="confirm-btn" onClick={confirmDelete}>Sim</button>
+              <button className="cancel-btn" onClick={() => setShowModal(false)}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
