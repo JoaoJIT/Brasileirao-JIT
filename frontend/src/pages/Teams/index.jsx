@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import api from "../../service/api";
 
@@ -12,12 +12,21 @@ function Teams() {
   const [showModal, setShowModal] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [teamId, setTeamId] = useState(0);
+  const [successMessage, setSuccessMessage] = useState(""); 
+
+  // Obter a mensagem de sucesso da URL (usando useLocation)
+  const location = useLocation();
 
   useEffect(() => {
     api.get("times").then((response) => {
       setTeams(response.data);
       console.log(response);
     });
+
+    if(location.state && location.state.successMessage){
+      setSuccessMessage(location.state.successMessage);
+      setTimeout(() => setSuccessMessage(""), 3000);
+    }
   }, []);
 
   const handleDeleteClick = (name,id) => {
@@ -38,8 +47,11 @@ function Teams() {
   async function deleteTeam(id) {
     try {
       await api.delete(`times/${id}`);
-
       setTeams(teams.filter((team) => team.id !== id));
+
+      setSuccessMessage(`O time "${teamName}" foi excluído com sucesso!`);
+      setTimeout(() => setSuccessMessage(""), 3000);
+      
     } catch (error) {
       alert("Erro ao excluír time! Tente novamente!");
     }
@@ -55,6 +67,9 @@ function Teams() {
 
   return (
     <div className="team-container">
+      {/* Mensagem de sucesso */}
+      {successMessage && <div className="success-message">{successMessage}</div>}
+
       <header>
         <Link to={"/"}>
           <span>FutBrasil</span>
