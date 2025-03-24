@@ -29,7 +29,7 @@ function Teams() {
 
   async function editTeam(id) {
     try {
-      navigate(`/team/new/${id}`);
+      navigate(`/team/edit/${id}`)
     } catch (error) {
       alert("Erro ao editar time! Tente novamente!");
     }
@@ -41,7 +41,7 @@ function Teams() {
         <Link to={"/"}>
           <span>FutBrasil</span>
         </Link>
-        <Link to="/team/new/0">Adicionar novo time</Link>
+        <Link to="/team/new">Adicionar novo time</Link>
       </header>
 
       <table>
